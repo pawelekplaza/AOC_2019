@@ -1,0 +1,6 @@
+C:\Users\pepz\source\repos\AdventOfCode2019_Day3\bin\x64\Release\AdventOfCode2019_Day3.exe.config
+C:\Users\pepz\source\repos\AdventOfCode2019_Day3\bin\x64\Release\AdventOfCode2019_Day3.exe
+C:\Users\pepz\source\repos\AdventOfCode2019_Day3\bin\x64\Release\AdventOfCode2019_Day3.pdb
+C:\Users\pepz\source\repos\AdventOfCode2019_Day3\obj\x64\Release\AdventOfCode2019_Day3.csproj.CoreCompileInputs.cache
+C:\Users\pepz\source\repos\AdventOfCode2019_Day3\obj\x64\Release\AdventOfCode2019_Day3.exe
+C:\Users\pepz\source\repos\AdventOfCode2019_Day3\obj\x64\Release\AdventOfCode2019_Day3.pdb

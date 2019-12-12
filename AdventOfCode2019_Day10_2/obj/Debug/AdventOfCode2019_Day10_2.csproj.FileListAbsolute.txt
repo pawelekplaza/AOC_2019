@@ -1,0 +1,7 @@
+C:\Users\pepz\source\repos\AdventOfCode2019_Day10_2\bin\Debug\AdventOfCode2019_Day10_2.exe.config
+C:\Users\pepz\source\repos\AdventOfCode2019_Day10_2\bin\Debug\AdventOfCode2019_Day10_2.exe
+C:\Users\pepz\source\repos\AdventOfCode2019_Day10_2\bin\Debug\AdventOfCode2019_Day10_2.pdb
+C:\Users\pepz\source\repos\AdventOfCode2019_Day10_2\obj\Debug\AdventOfCode2019_Day10_2.csprojAssemblyReference.cache
+C:\Users\pepz\source\repos\AdventOfCode2019_Day10_2\obj\Debug\AdventOfCode2019_Day10_2.csproj.CoreCompileInputs.cache
+C:\Users\pepz\source\repos\AdventOfCode2019_Day10_2\obj\Debug\AdventOfCode2019_Day10_2.exe
+C:\Users\pepz\source\repos\AdventOfCode2019_Day10_2\obj\Debug\AdventOfCode2019_Day10_2.pdb
