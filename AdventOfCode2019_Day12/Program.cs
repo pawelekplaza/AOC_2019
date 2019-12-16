@@ -15,16 +15,16 @@ namespace AdventOfCode2019_Day12
         {
             var stopwatch = new Stopwatch();
             stopwatch.Start();
-            //var input = File.ReadAllLines("input.txt");
+            var input = File.ReadAllLines("input.txt");
 
             // 13s
-            var input = new[]
-            {
-                "<x=-2, y=16, z=11",
-                "<x=2, y=-10, z=-7>",
-                "<x=20, y=-8, z=8>",
-                "<x=-8, y=5, z=-1>"
-            };
+            //var input = new[]
+            //{
+            //    "<x=-2, y=16, z=11",
+            //    "<x=2, y=-10, z=-7>",
+            //    "<x=20, y=-8, z=8>",
+            //    "<x=-8, y=5, z=-1>"
+            //};
 
             //var input = new[]
             //{
@@ -47,45 +47,67 @@ namespace AdventOfCode2019_Day12
 
             var startingMoons = moons.Select(x => x.Copy()).ToList();
 
-            const int step = 1_000_000;
-            for (int i = 1, j = 0; ; i++)
+            long stepsX = 0;
+            long stepsY = 0;
+            long stepsZ = 0;
+            
+            for (long i = 1; ; i++)
             {
                 foreach (var moonPair in moonPairs)
                 {
-                    moonPair.UpdateVelocity();
+                    moonPair.UpdateVelocityX();
                 }
 
                 foreach (var moon in moons)
                 {
-                    moon.UpdatePosition();
+                    moon.UpdatePositionX();
                 }
 
                 if (moons.Select((x, index) => x.Equals(startingMoons[index])).All(x => x))
                 {
-                    Console.WriteLine($"Steps: { i + j * (BigInteger)step}   Time: { stopwatch.ElapsedMilliseconds }");
+                    stepsX = i;
                     break;
-                }
-
-                if (i % step == 0)
-                {
-                    j++;
-                    //Console.WriteLine($"Processed steps: { i + j++ * (BigInteger)step }   Time: { stopwatch.ElapsedMilliseconds }");
-                    i = 0;
-                }
-
-
-                if (moons.Select((x, index) => x.PositionEquals(startingMoons[index])).All(x => x))
-                {
-                    Console.WriteLine($"Position equals for step: {i}");
-                }
-
-                if (moons.Select((x, index) => x.VelocityEquals(startingMoons[index])).All(x => x))
-                {
-                    Console.WriteLine($"Velocity equals for step: {i}");
                 }
             }
 
-            //Console.WriteLine($"{moons.Sum(x => x.GetTotalEnergy())}");
+            for (long i = 1; ; i++)
+            {
+                foreach (var moonPair in moonPairs)
+                {
+                    moonPair.UpdateVelocityY();
+                }
+
+                foreach (var moon in moons)
+                {
+                    moon.UpdatePositionY();
+                }
+
+                if (moons.Select((x, index) => x.Equals(startingMoons[index])).All(x => x))
+                {
+                    stepsY = i;
+                    break;
+                }
+            }
+
+            for (long i = 1; ; i++)
+            {
+                foreach (var moonPair in moonPairs)
+                {
+                    moonPair.UpdateVelocityZ();
+                }
+
+                foreach (var moon in moons)
+                {
+                    moon.UpdatePositionZ();
+                }
+
+                if (moons.Select((x, index) => x.Equals(startingMoons[index])).All(x => x))
+                {
+                    stepsZ = i;
+                    break;
+                }
+            }
+
             Console.ReadLine();
         }
 
@@ -147,10 +169,18 @@ namespace AdventOfCode2019_Day12
             Position = position;
         }
 
-        public void UpdatePosition()
+        public void UpdatePositionX()
         {
             Position.X += Velocity.X;
+        }
+
+        public void UpdatePositionY()
+        {
             Position.Y += Velocity.Y;
+        }
+
+        public void UpdatePositionZ()
+        {
             Position.Z += Velocity.Z;
         }
 
@@ -169,17 +199,6 @@ namespace AdventOfCode2019_Day12
         public bool Equals(Moon moon)
         {
             return Position.Equals(moon.Position) && Velocity.Equals(moon.Velocity);
-        }
-
-        public bool PositionEquals(Moon moon)
-        {
-            //return Position.Equals(moon.Position) && Velocity.Equals(moon.Velocity);
-            return Position.Equals(moon.Position);
-        }
-
-        public bool VelocityEquals(Moon moon)
-        {
-            return Velocity.Equals(moon.Velocity);
         }
     }
 
@@ -225,7 +244,7 @@ namespace AdventOfCode2019_Day12
             Second = y;
         }
 
-        public void UpdateVelocity()
+        public void UpdateVelocityX()
         {
             if (First.Position.X > Second.Position.X)
             {
@@ -237,7 +256,10 @@ namespace AdventOfCode2019_Day12
                 First.Velocity.X++;
                 Second.Velocity.X--;
             }
+        }
 
+        public void UpdateVelocityY()
+        {
             if (First.Position.Y > Second.Position.Y)
             {
                 Second.Velocity.Y++;
@@ -248,7 +270,10 @@ namespace AdventOfCode2019_Day12
                 First.Velocity.Y++;
                 Second.Velocity.Y--;
             }
+        }
 
+        public void UpdateVelocityZ()
+        {
             if (First.Position.Z > Second.Position.Z)
             {
                 Second.Velocity.Z++;
