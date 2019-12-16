@@ -1,0 +1,7 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/ConsoleApp4/v16
+/AdventOfCode2019_Day3_2/obj/Debug
+/obj/Debug
