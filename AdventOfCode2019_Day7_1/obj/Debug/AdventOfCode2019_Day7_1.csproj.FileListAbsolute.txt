@@ -1,7 +1,0 @@
-C:\Users\pepz\source\repos\ConsoleApp4\AdventOfCode2019_Day7_1\bin\Debug\AdventOfCode2019_Day7_1.exe.config
-C:\Users\pepz\source\repos\ConsoleApp4\AdventOfCode2019_Day7_1\bin\Debug\AdventOfCode2019_Day7_1.exe
-C:\Users\pepz\source\repos\ConsoleApp4\AdventOfCode2019_Day7_1\bin\Debug\AdventOfCode2019_Day7_1.pdb
-C:\Users\pepz\source\repos\ConsoleApp4\AdventOfCode2019_Day7_1\obj\Debug\AdventOfCode2019_Day7_1.csprojAssemblyReference.cache
-C:\Users\pepz\source\repos\ConsoleApp4\AdventOfCode2019_Day7_1\obj\Debug\AdventOfCode2019_Day7_1.csproj.CoreCompileInputs.cache
-C:\Users\pepz\source\repos\ConsoleApp4\AdventOfCode2019_Day7_1\obj\Debug\AdventOfCode2019_Day7_1.exe
-C:\Users\pepz\source\repos\ConsoleApp4\AdventOfCode2019_Day7_1\obj\Debug\AdventOfCode2019_Day7_1.pdb

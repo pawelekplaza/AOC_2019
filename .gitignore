@@ -20,3 +20,7 @@
 /AdventOfCode2019_Day6_1/obj/Release
 /obj/Release
 /AdventOfCode2019_Day10_2/obj/Release
+bin
+obj
+*.suo
+*.user

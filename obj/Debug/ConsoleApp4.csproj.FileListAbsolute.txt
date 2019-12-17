@@ -1,8 +1,0 @@
-C:\Users\pepz\source\repos\ConsoleApp4\bin\Debug\Config.xml
-C:\Users\pepz\source\repos\ConsoleApp4\bin\Debug\ConsoleApp4.exe.config
-C:\Users\pepz\source\repos\ConsoleApp4\bin\Debug\ConsoleApp4.exe
-C:\Users\pepz\source\repos\ConsoleApp4\bin\Debug\ConsoleApp4.pdb
-C:\Users\pepz\source\repos\ConsoleApp4\obj\Debug\ConsoleApp4.csprojAssemblyReference.cache
-C:\Users\pepz\source\repos\ConsoleApp4\obj\Debug\ConsoleApp4.csproj.CoreCompileInputs.cache
-C:\Users\pepz\source\repos\ConsoleApp4\obj\Debug\ConsoleApp4.exe
-C:\Users\pepz\source\repos\ConsoleApp4\obj\Debug\ConsoleApp4.pdb

@@ -1,6 +1,0 @@
-C:\Users\pepz\source\repos\ConsoleApp4\AdventOfCode2019_Day3_2\bin\Debug\AdventOfCode2019_Day3_2.exe.config
-C:\Users\pepz\source\repos\ConsoleApp4\AdventOfCode2019_Day3_2\bin\Debug\AdventOfCode2019_Day3_2.exe
-C:\Users\pepz\source\repos\ConsoleApp4\AdventOfCode2019_Day3_2\bin\Debug\AdventOfCode2019_Day3_2.pdb
-C:\Users\pepz\source\repos\ConsoleApp4\AdventOfCode2019_Day3_2\obj\Debug\AdventOfCode2019_Day3_2.csproj.CoreCompileInputs.cache
-C:\Users\pepz\source\repos\ConsoleApp4\AdventOfCode2019_Day3_2\obj\Debug\AdventOfCode2019_Day3_2.exe
-C:\Users\pepz\source\repos\ConsoleApp4\AdventOfCode2019_Day3_2\obj\Debug\AdventOfCode2019_Day3_2.pdb
