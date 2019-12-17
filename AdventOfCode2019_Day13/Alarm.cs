@@ -9,6 +9,7 @@ namespace AdventOfCode2019_Day13
 {
     public class Alarm : Dictionary<BigInteger, BigInteger>//List<BigInteger>
     {
+        private Point lastBallPosition;
         private BigInteger i = 0;
         private BigInteger currentScore;
         private readonly Grid grid = new Grid();
@@ -55,7 +56,12 @@ namespace AdventOfCode2019_Day13
                 else if (opcode.Equals(3))
                 {
                     PrintGame();
-                    this[GetModeratePosition(firstParamMode, i + 1)] = BigInteger.Parse(Console.ReadLine() ?? "0");
+                    MovePaddle(firstParamMode);                    
+
+                    //this[GetModeratePosition(firstParamMode, i + 1)] = BigInteger.Parse(Console.ReadLine());
+
+                    //await Task.Delay(1000);
+
                     i += 2;
                 }
                 else if (opcode.Equals(4))
@@ -67,9 +73,12 @@ namespace AdventOfCode2019_Day13
                         if (outputs[0] == -1 && outputs[1] == 0)
                         {
                             this.currentScore  = outputs[2];
+                            PrintGame();
+                            outputs.Clear();
                         }
                         else
                         {
+                            SaveLastBall();
                             DrawTile(outputs);
                         }
                     }
@@ -126,7 +135,7 @@ namespace AdventOfCode2019_Day13
                     throw new ArgumentException();
                 }
             }
-        }        
+        }
 
         public Alarm()
         {
@@ -136,6 +145,17 @@ namespace AdventOfCode2019_Day13
         public Alarm(string input)
         {
             Initialize(input);
+        }
+
+        private void SaveLastBall()
+        {
+            var lastBall = this.grid.GetBall();
+            if (lastBall == null)
+            {
+                return;
+            }
+
+            this.lastBallPosition = new Point(lastBall.X, lastBall.Y);
         }
 
         private void DrawTile(List<BigInteger> outputs)
@@ -197,8 +217,8 @@ namespace AdventOfCode2019_Day13
         }
 
         private void PrintGame()
-        {
-            Console.Clear();
+        {            
+            var stringBuilder = new StringBuilder();
             for (int y = 0; y <= 25; y++)
             {
                 for (int x = 0; x < 80; x++)
@@ -208,27 +228,98 @@ namespace AdventOfCode2019_Day13
                     switch (tile.Type)
                     {
                         case ObjectType.Wall:
-                            Console.Write('|');
+                            stringBuilder.Append('|');
                             break;
                         case ObjectType.Block:
-                            Console.Write('X');
+                            stringBuilder.Append('X');
                             break;
                         case ObjectType.Paddle:
-                            Console.Write('-');
+                            stringBuilder.Append('T');
                             break;
                         case ObjectType.Ball:
-                            Console.Write('O');
+                            stringBuilder.Append('O');
                             break;
                         case ObjectType.Empty:
-                            Console.Write(' ');
+                            stringBuilder.Append(' ');
                             break;
                     }
                 }
 
-                Console.WriteLine();
+                stringBuilder.AppendLine();
+            }
+            
+            stringBuilder.AppendLine($"Score: { this.currentScore }");
+            Console.SetCursorPosition(0, 0);
+            Console.Write(stringBuilder.ToString());
+        }
+
+        private void MovePaddle(BigInteger firstParamMode)
+        {
+            var ball = this.grid.GetBall();
+            var currentBallPosition = new Point(ball.X, ball.Y);
+
+            var paddle = this.grid.GetPaddle();
+            var paddlePosition = new Point(paddle.X, paddle.Y);
+
+            if (currentBallPosition.X == lastBallPosition.X)
+            {
+                this[GetModeratePosition(firstParamMode, i + 1)] = 1;
+                return;
+            }            
+
+            int newPaddleXPosition;
+            Move ballDirection = currentBallPosition.X < lastBallPosition.X
+                ? Move.Left
+                : Move.Right;
+
+            Point nextBallPosition;
+
+            if (currentBallPosition.Y > lastBallPosition.Y)
+            {
+                nextBallPosition = ballDirection == Move.Left
+                    ? new Point(currentBallPosition.X - 1, currentBallPosition.Y + 1)
+                    : new Point(currentBallPosition.X + 1, currentBallPosition.Y + 1);
+            }
+            else
+            {
+                nextBallPosition = ballDirection == Move.Left
+                    ? new Point(currentBallPosition.X - 1, currentBallPosition.Y - 1)
+                    : new Point(currentBallPosition.X + 1, currentBallPosition.Y - 1);
             }
 
-            Console.WriteLine($"Score: { this.currentScore }");
+            var nextTile = this.grid.GetTile(nextBallPosition.X, nextBallPosition.Y);
+
+            if (nextTile.WillBounce())
+            {
+                newPaddleXPosition = currentBallPosition.X + (ballDirection == Move.Left ? -1 : 1);
+            }
+            else if (currentBallPosition.Y == 23 && paddlePosition.X == currentBallPosition.X)
+            {
+                newPaddleXPosition = currentBallPosition.X;
+            }
+            else
+            {
+                newPaddleXPosition = ballDirection == Move.Left
+                    ? currentBallPosition.X - 1
+                    : currentBallPosition.X + 1;
+            }
+
+            if (newPaddleXPosition > paddlePosition.X)
+            {
+                this[GetModeratePosition(firstParamMode, i + 1)] = 1;
+            }
+            else if (newPaddleXPosition < paddlePosition.X)
+            {
+                this[GetModeratePosition(firstParamMode, i + 1)] = -1;
+            }
+            else if (newPaddleXPosition == paddlePosition.X)
+            {
+                this[GetModeratePosition(firstParamMode, i + 1)] = 0;
+            }
+            else
+            {
+                throw new Exception("Wrong conditions.");
+            }
         }
     }
 }

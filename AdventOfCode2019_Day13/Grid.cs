@@ -21,6 +21,16 @@ namespace AdventOfCode2019_Day13
 
             return result;
         }
+
+        public Tile GetBall()
+        {
+            return this.FirstOrDefault(tile => tile.Type == ObjectType.Ball);
+        }
+
+        public Tile GetPaddle()
+        {
+            return this.FirstOrDefault(tile => tile.Type == ObjectType.Paddle);
+        }
     }
 
     public class Tile
@@ -41,9 +51,9 @@ namespace AdventOfCode2019_Day13
             Y = y;
         }
 
-        public bool CanBeDestroyed()
+        public bool WillBounce()
         {
-            return Type == ObjectType.Block || Type == ObjectType.Empty;
+            return Type == ObjectType.Block || Type == ObjectType.Wall;
         }
     }
 
@@ -72,5 +82,28 @@ namespace AdventOfCode2019_Day13
         {
             return (ObjectType) ((int) value);
         }
+
+        public static Move Reverse(this Move move)
+        {
+            return move == Move.Left ? Move.Right : Move.Left;
+        }
+    }
+
+    public struct Point
+    {
+        public int X { get; set; }
+        public int Y { get; set; }
+
+        public Point(int x, int y)
+        {
+            X = x;
+            Y = y;
+        }
+    }
+
+    public enum Move
+    {
+        Left,        
+        Right
     }
 }
